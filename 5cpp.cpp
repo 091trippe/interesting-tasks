@@ -1,34 +1,25 @@
-﻿#include <iostream>
-#include <cmath>
+#include <iostream>
 #include <string>
+
 using namespace std;
 
-
-bool isPalindrome(int num) {
-    string str = to_string(num); 
-    int start = 0;
-    int end = str.length() - 1;
-
-   
-    while (start < end) {
-        if (str[start] != str[end]) {
-            return false; 
-        }
-        start++;
-        end--;
-    }
-    return true; 
+bool Palindrome(int num) {
+    string str = to_string(num);
+    string rev_str = string(str.rbegin(), str.rend());
+    return str == rev_str;
 }
 
 int main() {
-    
-    for (int i = 1; i <= 99; i++) {
-        if (isPalindrome(i)) { 
-            int square = i * i; 
-            if (isPalindrome(square)) { 
-                cout << i << " " << square << endl; 
+    cout << "Паліндроми першої сотні, чий квадрат теж паліндром:" << endl;
+
+    for (int i = 1; i < 100; i++) {
+        if (Palindrome(i)) {
+            int square = i * i;
+            if (Palindrome(square)) { 
+                cout << i << " -> " << square << endl;
             }
         }
     }
+
     return 0;
 }
