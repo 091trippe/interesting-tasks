@@ -1,34 +1,41 @@
-﻿#include <iostream>
-#include <cmath>
-#include <string>
+#include <iostream>
+
 using namespace std;
 
-
-bool isPalindrome(int num) {
-    string str = to_string(num); 
-    int start = 0;
-    int end = str.length() - 1;
-
-   
-    while (start < end) {
-        if (str[start] != str[end]) {
-            return false; 
-        }
-        start++;
-        end--;
+void primeFactorization(int n) {
+    cout << n << " = ";
+    
+    while (n % 2 == 0) {
+        cout << 2;
+        n /= 2;
+        if (n > 1) cout << ", ";
     }
-    return true; 
+
+    for (int i = 3; i * i <= n; i += 2) {
+        while (n % i == 0) {
+            cout << i;
+            n /= i;
+            if (n > 1) cout << ", ";
+        }
+    }
+ 
+    if (n > 1) {
+        cout << n;
+    }
+    
+    cout << endl;
 }
 
 int main() {
-    
-    for (int i = 1; i <= 99; i++) {
-        if (isPalindrome(i)) { 
-            int square = i * i; 
-            if (isPalindrome(square)) { 
-                cout << i << " " << square << endl; 
-            }
-        }
+    int number;
+    cout << "Введіть число: ";
+    cin >> number;
+
+    if (number < 2) {
+        cout << "Число більше 1 " << endl;
+    } else {
+        primeFactorization(number);
     }
+
     return 0;
 }
